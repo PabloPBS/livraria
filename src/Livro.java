@@ -1,12 +1,17 @@
-public class Livro {
-    String nome;
-    String descricao;
+public abstract class Livro {
+    private String nome;
+    private String descricao;
     private double valor;
-    String isbn;
-    Autor autor;
+    private String isbn;
+    private Autor autor;
 
-    public Livro() {
-        System.out.println("Novo livro criado");
+    public Livro(Autor autor) {
+        this.autor = autor;
+        this.isbn = "000-00-00000-00-0";
+    }
+
+    public Livro() {//Não pode ter os mesmos parâmetros do outro construtor-- Sobecarga de construtor (overloaded)
+        this.isbn = "000-00-00000-00-0";
     }
 
     void mostrarDetalhes() {
@@ -22,13 +27,7 @@ public class Livro {
         System.out.println("--");
     }
 
-    public boolean aplicaDescontoDe(double porcentagem) {
-        if (porcentagem > 0.3) {
-            return false;
-        }
-        this.valor -= this.valor * porcentagem;
-        return true;
-    }
+    public abstract boolean aplicaDescontoDe(double porcentagem);
 
     private boolean temAutor() {
         return this.autor != null;
@@ -40,5 +39,37 @@ public class Livro {
 
     public double getValor() {
         return this.valor;
+    }
+
+    public String getNome() {
+        return this.nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getDescricao() {
+        return this.descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
+    public String getIsbn() {
+        return this.isbn;
+    }
+
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
+    }
+
+    public Autor getAutor() {
+        return this.autor;
+    }
+
+    public void setAutor(Autor autor) {
+        this.autor = autor;
     }
 }
